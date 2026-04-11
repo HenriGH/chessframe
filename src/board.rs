@@ -701,16 +701,6 @@ impl Board {
             self.xor(end, Piece::Rook, self.side_to_move);
         }
 
-        if self
-            .get_attackers(
-                self.pieces_color(Piece::King, self.side_to_move)
-                    .to_square(),
-            )
-            .is_not_zero()
-        {
-            return Err(Error::CannotMovePinned);
-        }
-
         self.pinned = EMPTY;
 
         for color in COLORS {
