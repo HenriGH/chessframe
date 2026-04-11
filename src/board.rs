@@ -533,23 +533,6 @@ impl Board {
             return Err(Error::InvalidMove);
         }
 
-        let king_square = self
-            .pieces_color(Piece::King, self.side_to_move)
-            .to_square();
-
-        if self.pinned().is_set(from) && from != king_square {
-            let pinned_mask = get_tangent(king_square, from) & !BitBoard::from_square(king_square);
-            let enemy_pieces = pinned_mask & self.occupancy(!self.side_to_move);
-
-            if pinned_mask != EMPTY && enemy_pieces != EMPTY {
-                let allowed = piece_moves & pinned_mask;
-
-                if !allowed.is_set(to) {
-                    return Err(Error::CannotMovePinned);
-                }
-            }
-        }
-
         Ok(piece)
     }
 
