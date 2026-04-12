@@ -1167,7 +1167,7 @@ impl Board {
                         Piece::Bishop => get_bishop_moves(src, blockers),
                         Piece::Rook => get_rook_moves(src, blockers),
                         Piece::Queen => get_bishop_moves(src, blockers) | get_rook_moves(src, blockers),
-                        Piece::King => get_king_moves(src) | if self.check < 1 { self.generate_castling_moves() } else { EMPTY },
+                        Piece::King => get_king_moves(src) | self.generate_castling_moves(),
                         _ => unreachable!(),
                     } & !allied_pieces & mask;
 
