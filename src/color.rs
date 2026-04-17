@@ -3,7 +3,7 @@ use std::ops::Not;
 use crate::rank::Rank;
 
 #[repr(u8)]
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Hash, Default)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Hash, Default, Eq)]
 pub enum Color {
     #[default]
     White,
