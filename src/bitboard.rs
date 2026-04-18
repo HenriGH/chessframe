@@ -21,6 +21,8 @@ impl Hash for BitBoard {
     }
 }
 
+impl Eq for Square {}
+
 impl BitAnd for BitBoard {
     type Output = Self;
 
