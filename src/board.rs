@@ -16,7 +16,7 @@ use crate::{
     square::Square,
 };
 
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct Board {
     pub pieces: [BitBoard; 6],    // 6 for both, compute white and black using occupancy
     pub occupancy: [BitBoard; 2], // white, black occupancy
