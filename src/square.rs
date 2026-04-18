@@ -1,9 +1,21 @@
 use std::{fmt, str::FromStr};
-
+use std::hash::{Hash, Hasher};
 use crate::{color::Color, error::Error, file::File, rank::Rank};
 
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Hash, Default, Eq)]
 pub struct Square(u8);
+
+impl PartialEq for Square {
+    fn eq(&self, other: &Self) -> bool {
+        self.0 == other.0
+    }
+}
+
+impl Hash for Square {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.0.hash(state);
+    }
+}
 
 impl FromStr for Square {
     type Err = Error;
