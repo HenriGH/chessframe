@@ -2,7 +2,7 @@ use std::{fmt, str::FromStr};
 use std::hash::{Hash, Hasher};
 use crate::{color::Color, error::Error, file::File, rank::Rank};
 
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Hash, Default, Eq)]
+#[derive(Debug, Clone, Copy, PartialOrd, Default)]
 pub struct Square(u8);
 
 impl PartialEq for Square {
