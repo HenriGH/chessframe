@@ -17,6 +17,8 @@ impl Hash for Square {
     }
 }
 
+impl Eq for Square {}
+
 impl FromStr for Square {
     type Err = Error;
 
