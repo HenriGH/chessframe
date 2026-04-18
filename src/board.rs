@@ -52,7 +52,7 @@ impl Hash for Board {
         self.side_to_move.hash(state);
         self.occupancy.hash(state);
         //self.castling_rights.hash(state);
-        self.en_passant.hash(state);
+        self.en_passant_square.hash(state);
     }
 }
 
