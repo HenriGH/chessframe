@@ -16,7 +16,7 @@ use crate::{
     square::Square,
 };
 
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, Copy, PartialOrd)]
 pub struct Board {
     pub pieces: [BitBoard; 6],    // 6 for both, compute white and black using occupancy
     pub occupancy: [BitBoard; 2], // white, black occupancy
@@ -34,10 +34,25 @@ impl Default for Board {
         Board::from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     }
 }
+impl PartialEq for Board {
+    fn eq(&self, other: &Self) -> bool {
+        self.pieces == other.pieces &&
+        self.side_to_move == other.side_to_move &&
+        self.occupancy == other.occupancy &&
+        //self.castling_rights == other.castling_rights &&
+        self.en_passant_square == other.en_passant_square
+    }
+}
+
+impl Eq for Board {}
 
 impl Hash for Board {
     fn hash<H: Hasher>(&self, state: &mut H) {
-        self.hash().hash(state);
+        self.pieces.hash(state);
+        self.side_to_move.hash(state);
+        self.occupancy.hash(state);
+        //self.castling_rights.hash(state);
+        self.en_passant.hash(state);
     }
 }
 
