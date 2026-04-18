@@ -1,12 +1,25 @@
 use core::fmt;
 use std::ops::{BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Not, Shl, Shr};
+use std::hash::{Hash, Hasher};
 
 use crate::{file::File, rank::Rank, square::Square};
 
-#[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Hash, Default, Eq)]
+#[derive(Debug, Clone, Copy, PartialOrd, Default)]
 pub struct BitBoard(pub u64);
 
 pub const EMPTY: BitBoard = BitBoard(0);
+
+impl PartialEq for BitBoard {
+    fn eq(&self, other: &Self) -> bool {
+        self.0 == other.0
+    }
+}
+
+impl Hash for BitBoard {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.0.hash(state);
+    }
+}
 
 impl BitAnd for BitBoard {
     type Output = Self;
